@@ -1,6 +1,8 @@
 import React from 'react';
-import { Image, Text, View } from 'react-native';
+import { Image, Pressable, Text, View } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+
+import { useNavigation } from '@react-navigation/native'
 
 import styles from './styles';
 
@@ -17,9 +19,15 @@ interface ProductItemProps {
 }
 
 const ProductCard = ({ item }: ProductItemProps) => {
+    const navigation = useNavigation();
+
+    const handleNavigator = () => {
+        navigation.navigate('ProductDetails')
+    }
+
     return (
 
-        <View style={styles.container}>
+        <Pressable onPress={handleNavigator} style={styles.container}>
 
             <Image style={styles.image} source={{ uri: item.image }} />
 
@@ -48,7 +56,7 @@ const ProductCard = ({ item }: ProductItemProps) => {
                 </Text>
             </View>
 
-        </View>
+        </Pressable>
 
     )
 }

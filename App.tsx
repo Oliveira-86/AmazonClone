@@ -1,13 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, } from 'react-native';
-import ProductDetails from './src/screens/ProductDetails';
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+import BottomBarNavigation from './src/routes/index';
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <SafeAreaView>
-      <StatusBar style="auto" />
-      <ProductDetails />
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="HomeTabs" component={BottomBarNavigation} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };

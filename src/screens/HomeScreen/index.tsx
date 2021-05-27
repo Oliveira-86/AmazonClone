@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image, FlatList } from 'react-native';
+import { View, FlatList } from 'react-native';
 import ProductCard from '../../components/ProductCard';
 
 import products from '../../data/products'

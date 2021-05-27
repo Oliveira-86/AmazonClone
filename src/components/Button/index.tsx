@@ -4,12 +4,13 @@ import { Pressable, Text, StyleSheet } from 'react-native'
 interface ButtonProps {
     text: string;
     onPress: () => void;
+    stylesContainer?: Object; 
 }
 
-const Button = ({text, onPress}: ButtonProps) => {
+const Button = ({text, onPress, stylesContainer}: ButtonProps) => {
     return (
         <Pressable 
-            style={styles.container}
+            style={[styles.container, stylesContainer]}
             onPress={onPress}
         >
             <Text style={styles.title}>{text}</Text>

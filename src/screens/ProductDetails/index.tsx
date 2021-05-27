@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, SafeAreaView, ScrollView } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 
 import { Picker } from '@react-native-picker/picker';
 
@@ -24,7 +24,6 @@ const ProductDetails = () => {
             <ImageCarousel images={product.images} />
 
             <Picker
-                style={{marginVertical: 20, backgroundColor: '#e1e7e4', borderRadius: 10}}
                 selectedValue={selectedOption}
                 onValueChange={(itemValue) => setSelectedOption(itemValue)}
             >
