@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, Alert, View } from 'react-native';
+import { Text, Alert, View, KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
 
 import countryList from 'country-list';
 
@@ -17,10 +17,15 @@ const AddressScreen = () => {
     const [phone, setPhone] = useState('');
     const [address, setAddress] = useState('');
     const [addressComplete, setAddressComplete] = useState('');
-    const [addressError, setAddressError] = useState('');
+    const [addressError, setAddressError] = useState('Invalid address');
     const [city, setCity] = useState('');
 
     const onCheckout = () => {
+
+        if(!!addressError) {
+            Alert.alert('Fill all fields errors before submiting')
+            return; 
+        }
 
         if(!fullname) {
             Alert.alert('Please fill in the fullname field')
@@ -55,7 +60,11 @@ const AddressScreen = () => {
     }
 
     return (
-        <View style={styles.container}>
+        <KeyboardAvoidingView
+            behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+            style={{flex: 1}}
+        >
+        <ScrollView style={styles.container}>
             <View style={styles.row}>
                 <Picker selectedValue={country} onValueChange={setCountry}>
                     {countries.map((country: any) => (
@@ -98,12 +107,11 @@ const AddressScreen = () => {
                     placeholder="Street address or P.O. Box"
                     value={address}
                     onEndEditing={validateAddress}
-                    onChangeText={(text) => {
+                    onChangeText={text => {
                         setAddress(text);
                         setAddressError('');
                     }}
-                />
-               
+                />               
                 {!!addressError && (
                     <Text style={styles.errorLabel}>{addressError}</Text>
                 )}
@@ -122,7 +130,8 @@ const AddressScreen = () => {
             </View>  
 
             <Button text='Checkout' onPress={onCheckout} /> 
-        </View>
+        </ScrollView>
+        </KeyboardAvoidingView>
     );
 };
 
